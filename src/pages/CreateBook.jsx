@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+const API_URL = process.env.REACT_APP_API_URL
 
 
 const CreateBook = () => {
@@ -19,7 +20,7 @@ const CreateBook = () => {
 
   const onSubmit = () =>{
     console.log(newBook)
-    axios.post('http://localhost:8000/api/books/', newBook)
+    axios.post(API_URL+'api/books/', newBook)
     .then(res=>{
       console.log("книга добавлена")
     })

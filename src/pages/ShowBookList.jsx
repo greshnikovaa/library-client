@@ -2,12 +2,13 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import BookCard from '../components/BookCard'
 import axios from 'axios'
+const API_URL = process.env.REACT_APP_API_URL
 
 const ShowBookList = () => {
   const[books, setBooks] = useState([])
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/api/books')
+    axios.get(API_URL+'api/books')
     .then((res)=>{
       console.log(res.data)
       setBooks(res.data)

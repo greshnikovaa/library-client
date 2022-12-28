@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+const API_URL = process.env.REACT_APP_API_URL
+
 
 const ShowBookDetails = () => {
     const [book, setBook] = useState({})
@@ -8,7 +10,7 @@ const ShowBookDetails = () => {
     const navigation = useNavigate()
 
     useEffect(()=>{
-      axios.get('http://localhost:8000/api/books/' + bookId)
+      axios.get(API_URL+'api/books/' + bookId)
       .then((res)=>{
         console.log(res.data)
         setBook(res.data)
@@ -19,7 +21,7 @@ const ShowBookDetails = () => {
     }, [bookId])
 
     const onDeleteClick = () => {
-      axios.delete('http://localhost:8000/api/books/' + bookId)
+      axios.delete(API_URL+'api/books/' + bookId)
       .then((res) =>{
         console.log('книга удалена')
         navigation('/')

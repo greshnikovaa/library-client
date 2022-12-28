@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
+const API_URL = process.env.REACT_APP_API_URL
+
 
 const UpdateBookIfo = () => {
 const [book, setBook] = useState({})
@@ -10,7 +12,7 @@ const onChange = (e) =>{
   setBook({...book, [e.target.name]: e.target.value})
 }
 const onSubmit = () =>{
-  axios.put('http://localhost:8000/api/books/' + bookId, book)
+  axios.put(API_URL+'api/books/' + bookId, book)
   .then((res)=>{
     console.log("Данные книги изменены")
   })
@@ -20,7 +22,7 @@ const onSubmit = () =>{
 }
 
 useEffect(()=>{
-  axios.get('http://localhost:8000/api/books/' + bookId)
+  axios.get(API_URL+'api/books/' + bookId)
   .then((res)=>{
     setBook(res.data)
   })
